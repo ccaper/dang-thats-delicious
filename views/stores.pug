@@ -1,0 +1,13 @@
+extends layout
+
+include mixins/_storeCard
+include mixins/_pagination
+
+block content
+  .inner
+    h2= title
+    .stores
+      - const heartStrings = user ? user.hearts.map(obj => obj.toString()) : []
+      each store in stores
+        +storeCard(store, heartStrings)
+    +pagination(page, pages, count)
